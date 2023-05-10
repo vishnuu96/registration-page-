@@ -57,14 +57,15 @@ function showOnscreen(person){
 
 }
 window.addEventListener("DOMContentLoaded",()=>{
-    const userDetails=localStorage
-    const userDetailsKey=Object.keys(userDetails)
-    for(let i=0;i<userDetailsKey.length;i++){
-        const id=userDetailsKey[i]
-        const user=userDetails[id]
-        const userObj=JSON.parse(user)
-        showOnscreen(userObj)
-    }
+    axios.get("https://crudcrud.com/api/9d9d17d908884f7aa113b1e00d39482a/appointmentData")
+    .then((response)=>{
+        for(let i=0;i<response.data.length;i++){
+            showOnscreen(response.data[i])
+        }
+    })
+    .ctach((err)=>{
+        console.log(err)
+    })
 })
 
 
